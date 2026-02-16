@@ -1,0 +1,2 @@
+**Reselling Tracker**
+whats up. feel free for anyone to make any changes, this is mainly just a base template. if you have any ideas you can put them as issues in the github repository and we can make comments and stuff on them.
