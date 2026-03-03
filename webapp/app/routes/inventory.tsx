@@ -4,8 +4,8 @@ import Navbar from "~/components/Navbar";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Home" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Inventory" },
+    { name: "description", content: "View your inventory" },
   ];
 }
 
@@ -18,7 +18,7 @@ const INVENTORY_ITEMS = Array.from({ length: 18 }, (_, i) => ({
   price: Math.floor(Math.random() * 500) + 10,
 }));
 
-export default function Home() {
+export default function Inventory() {
   const [statusFilter, setStatusFilter] = useState('All');
   const [categoryFilters, setCategoryFilters] = useState({
     Pants: false,
@@ -69,18 +69,10 @@ export default function Home() {
   });
 
   return (
-    <div className="bg-white w-full min-h-screen flex flex-col">
+    <div className="bg-white w-full h-screen flex flex-col">
       <Navbar />
-      {/* Blank dashboard area at top */}
-      <div 
-        className="h-80 bg-[#9D5FC2] border-b border-gray-200 p-6 flex items-center justify-center">
-        <h2 className="text-2xl font-arial-medium text-black">
-          Future financial dashboard area
-        </h2>
-      </div>
       
-      {/* Inventory section with filters */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden pt-16">
         {/* LEFT SIDEBAR - FILTERS */}
         <aside className="w-64 border-r border-gray-300 bg-gray-50 p-6 overflow-y-auto">
           <h2 className="text-xl font-arial-medium text-black mb-6">Filters</h2>
@@ -146,7 +138,7 @@ export default function Home() {
         </aside>
 
         {/* RIGHT SIDE - INVENTORY GRID */}
-        <main className="flex-1 p-8 overflow-y-auto bg-[#3F3047]">
+        <main className="flex-1 p-8 overflow-y-auto">
           <div className="mb-4">
             <p className="text-gray-600 text-sm">
               Showing {filteredItems.length} of {INVENTORY_ITEMS.length} items
