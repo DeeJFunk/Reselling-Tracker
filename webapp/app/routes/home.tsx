@@ -148,7 +148,7 @@ export default function Home() {
         {/* RIGHT SIDE - INVENTORY GRID */}
         <main className="flex-1 p-8 overflow-y-auto bg-[#3F3047]">
           <div className="mb-4">
-            <p className="text-gray-600 text-sm">
+            <p className="text-white text-sm">
               Showing {filteredItems.length} of {INVENTORY_ITEMS.length} items
             </p>
           </div>
@@ -160,9 +160,20 @@ export default function Home() {
                 className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
               >
                 <div className="text-center">
-                  <p className="text-gray-800 font-medium">{item.name}</p>
-                  <p className="text-gray-600 text-sm">${item.price}</p>
-                  <p className="text-gray-500 text-xs mt-1">{item.status}</p>
+                  <p className="text-gray-800 font-xl">{item.name}</p>
+                  <p className="text-gray-600 text-medium font-bold">${item.price}</p>
+                  <p
+                    className={`text-xs mt-1 font-semibold ${
+                      item.status === "Sold"
+                        ? "text-green-600"
+                        : item.status === "Available"
+                        ? "text-red-600"
+                        : "text-gray-500"
+                    }`}
+                  >
+                    {item.status}
+                  </p>
+                  <p className="text-gray-700 text-[10px] mt-3">({item.category})</p>
                 </div>
               </div>
             ))}
