@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, use } from 'react';
 import { Link } from "react-router";
 
 export default function Navbar() {
@@ -6,6 +6,7 @@ export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const accountButtonRef = useRef(null);
     const menuButtonRef = useRef(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     return (
         <>
@@ -40,31 +41,28 @@ export default function Navbar() {
                                 <button className="w-full bg-gray-700 py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium text-left" onClick={(e) => e.stopPropagation()}>
                                     Finances
                                 </button>
-                                <button className="w-full bg-gray-700 py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium text-left" onClick={(e) => e.stopPropagation()}>
-                                    Placeholder
-                                </button>
-                                <button className="w-full bg-gray-700 py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium text-left" onClick={(e) => e.stopPropagation()}>
-                                    Placeholder
-                                </button>
-                            
-
-                            
-                                
-                                
-
                             </div>
                         </div>
                     )}
                 </div>
 
                 <div className="relative">
-                    <button 
-                        ref={accountButtonRef}
-                        onClick={() => setIsAccountOpen(!isAccountOpen)}
-                        className="text-2xl font-arial-medium cursor-pointer hover:opacity-70 transition-opacity"
-                    >
-                        Account
-                    </button>
+                    {isLoggedIn ? (
+                        <button 
+                            ref={accountButtonRef}
+                            onClick={() => setIsAccountOpen(!isAccountOpen)}
+                            className="text-2xl font-arial-medium cursor-pointer hover:opacity-70 transition-opacity"
+                        >
+                            Account
+                        </button>
+                    ) : (
+                        <button 
+                            className="text-2xl font-arial-medium cursor-pointer hover:opacity-70 transition-opacity"
+                            onClick={() => setIsLoggedIn(true)}
+                        >
+                            Login
+                        </button>
+                    )}
 
                     {isAccountOpen && (
                         <div 
@@ -77,7 +75,11 @@ export default function Navbar() {
                                     <button className="flex-1 bg-gray-700 py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium">
                                         Profile
                                     </button>
-                                    <button className="flex-1 bg-gray-700 py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium">
+                                    <button className="flex-1 bg-gray-700 py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium"
+                                    onClick={() => {
+                                        setIsLoggedIn(false);
+                                        setIsAccountOpen(!isAccountOpen);
+                                    }}>
                                         Logout
                                     </button>
                                 </div>
