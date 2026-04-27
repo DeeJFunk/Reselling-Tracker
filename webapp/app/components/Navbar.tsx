@@ -26,7 +26,7 @@ export default function Navbar() {
                         >
                             <div className="flex flex-col gap-2">
 
-                                <Link to="/home" className="w-full" onClick={(e) => e.stopPropagation()}>
+                                <Link to="/" className="w-full" onClick={(e) => e.stopPropagation()}>
                                     <button className="w-full bg-ccbrown text-white py-2 px-4 rounded hover:opacity-80 transition-opacity font-arial-medium text-left" onClick={(e) => e.stopPropagation()}>
                                         Dashboard
                                     </button>
