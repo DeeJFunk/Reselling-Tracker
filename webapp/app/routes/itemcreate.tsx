@@ -118,7 +118,7 @@ export default function CreateItem() {
     <div className="min-h-screen bg-ccwhite">
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      <main className="max-w-4xl mx-auto px-6 pt-28 pb-8">
         <h1 className="text-4xl font-bold mb-8 text-black">Create Item</h1>
 
         {successMessage && (
