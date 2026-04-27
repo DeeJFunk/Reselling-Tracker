@@ -22,18 +22,18 @@ export function meta({}: Route.MetaArgs) {
 }
 
 const INVENTORY_ITEMS = [
-  { id: 1, name: 'Vintage Denim Jeans', status: 'Available', category: 'Pants', purchasePrice: 42, listingPrice: 95, soldPrice: 0 },
-  { id: 2, name: 'Retro Skate Sneakers', status: 'Sold', category: 'Shoes', purchasePrice: 55, listingPrice: 120, soldPrice: 140 },
-  { id: 3, name: 'Silk Bomber Jacket', status: 'Available', category: 'Tops', purchasePrice: 38, listingPrice: 88, soldPrice: 0 },
-  { id: 4, name: 'Leather Chelsea Boots', status: 'Sold', category: 'Shoes', purchasePrice: 65, listingPrice: 140, soldPrice: 170 },
-  { id: 5, name: 'Corduroy Chinos', status: 'Available', category: 'Pants', purchasePrice: 30, listingPrice: 75, soldPrice: 0 },
-  { id: 6, name: 'Graphic Tee Bundle', status: 'Sold', category: 'Tops', purchasePrice: 18, listingPrice: 42, soldPrice: 55 },
-  { id: 7, name: 'High Waist Shorts', status: 'Available', category: 'Pants', purchasePrice: 24, listingPrice: 60, soldPrice: 0 },
-  { id: 8, name: 'Running Trainers', status: 'Available', category: 'Shoes', purchasePrice: 48, listingPrice: 105, soldPrice: 0 },
-  { id: 9, name: 'Linen Button Shirt', status: 'Sold', category: 'Tops', purchasePrice: 22, listingPrice: 52, soldPrice: 68 },
-  { id: 10, name: 'Relaxed Fit Sweatpants', status: 'Available', category: 'Pants', purchasePrice: 35, listingPrice: 80, soldPrice: 0 },
-  { id: 11, name: 'Canvas Slip-Ons', status: 'Sold', category: 'Shoes', purchasePrice: 28, listingPrice: 58, soldPrice: 75 },
-  { id: 12, name: 'Oversized Hoodie', status: 'Available', category: 'Tops', purchasePrice: 27, listingPrice: 65, soldPrice: 0 },
+  { id: 1, name: "Vintage Denim Jeans", status: "Available", category: "Pants", purchasePrice: 45, listingPrice: 95, soldPrice: 0, image: "/images/jeans.jpg" },
+  { id: 2, name: "Retro Skate Sneakers", status: "Sold", category: "Shoes", purchasePrice: 60, listingPrice: 120, soldPrice: 120, image: "/images/sneakers.jpg" },
+  { id: 3, name: "Silk Bomber Jacket", status: "Available", category: "Tops", purchasePrice: 40, listingPrice: 88, soldPrice: 0, image: "/images/jacket.jpg" },
+  { id: 4, name: "Leather Chelsea Boots", status: "Sold", category: "Shoes", purchasePrice: 70, listingPrice: 140, soldPrice: 140, image: "/images/boots.jpg" },
+  { id: 5, name: "Corduroy Chinos", status: "Available", category: "Pants", purchasePrice: 30, listingPrice: 75, soldPrice: 0, image: "/images/chinos.jpg" },
+  { id: 6, name: "Graphic Tee Bundle", status: "Sold", category: "Tops", purchasePrice: 18, listingPrice: 42, soldPrice: 42, image: "/images/tee.jpg" },
+  { id: 7, name: "High Waist Shorts", status: "Available", category: "Pants", purchasePrice: 25, listingPrice: 60, soldPrice: 0, image: "/images/shorts.jpg" },
+  { id: 8, name: "Running Trainers", status: "Available", category: "Shoes", purchasePrice: 55, listingPrice: 105, soldPrice: 0, image: "/images/trainers.jpg" },
+  { id: 9, name: "Linen Button Shirt", status: "Sold", category: "Tops", purchasePrice: 20, listingPrice: 52, soldPrice: 52, image: "/images/shirt.jpg" },
+  { id: 10, name: "Relaxed Fit Sweatpants", status: "Available", category: "Pants", purchasePrice: 35, listingPrice: 80, soldPrice: 0, image: "/images/sweatpants.jpg" },
+  { id: 11, name: "Canvas Slip-Ons", status: "Sold", category: "Shoes", purchasePrice: 25, listingPrice: 58, soldPrice: 58, image: "/images/slipons.jpg" },
+  { id: 12, name: "Oversized Hoodie", status: "Available", category: "Tops", purchasePrice: 28, listingPrice: 65, soldPrice: 0, image: "/images/hoodie.jpg" },
 ];
 
 type Item = (typeof INVENTORY_ITEMS)[number];
@@ -293,10 +293,16 @@ export default function Home() {
             {filteredItems.map(item => (
             <Link key={item.id} to={`/product/${item.id}`} className="w-full" onClick={(e) => e.stopPropagation()}>
               <div
-                className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
+                className="bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:bg-gray-300 transition-colors"
                 onClick={() => handleOpenEdit(item)}
               >
-                <div className="text-center">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-48 object-cover"
+                />
+
+                <div className="p-4 text-center">
                   <p className="text-gray-800 font-medium">{item.name}</p>
                   <p className="text-gray-600 text-sm">${item.listingPrice}</p>
                   <p className="text-gray-500 text-xs mt-1">{item.status}</p>
