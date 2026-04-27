@@ -75,7 +75,7 @@ export const Dashboard = () => {
             'Yellow'
           ],
           datasets: [{
-            label: 'Interaction by year',
+            label: 'Interaction by',
             data: [300, 50, 100],
             backgroundColor: [
               'rgb(255, 99, 132)',

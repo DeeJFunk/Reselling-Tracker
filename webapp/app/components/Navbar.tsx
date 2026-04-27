@@ -9,7 +9,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="top-0 fixed z-50 flex w-full items-center justify-between p-4 bg-gray-700 shadow-md text-white">
+            <nav className="top-0 fixed z-50 flex w-full items-center justify-between p-4 bg-slate-700 shadow-md text-white">
                 <div className="relative">
                     <button 
                         ref={menuButtonRef}
