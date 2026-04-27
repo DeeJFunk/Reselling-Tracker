@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
+import { Dashboard } from '~/components/Dashboard';
+import { Link } from "react-router";
+
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -71,13 +75,7 @@ export default function Home() {
   return (
     <div className="bg-white w-full min-h-screen flex flex-col">
       <Navbar />
-      {/* Blank dashboard area at top */}
-      <div 
-        className="h-80 bg-[#9D5FC2] border-b border-gray-200 p-6 flex items-center justify-center">
-        <h2 className="text-2xl font-arial-medium text-black">
-          Future financial dashboard area
-        </h2>
-      </div>
+      <Dashboard />      
       
       {/* Inventory section with filters */}
       <div className="flex flex-1">
@@ -146,17 +144,17 @@ export default function Home() {
         </aside>
 
         {/* RIGHT SIDE - INVENTORY GRID */}
-        <main className="flex-1 p-8 overflow-y-auto bg-[#3F3047]">
+        <main className="flex-1 p-8 overflow-y-auto bg-gray-700">
           <div className="mb-4">
-            <p className="text-gray-600 text-sm">
+            <p className="text-white text-sm">
               Showing {filteredItems.length} of {INVENTORY_ITEMS.length} items
             </p>
           </div>
 
           <div className="grid grid-cols-3 gap-6">
             {filteredItems.map(item => (
+            <Link key={item.id} to={`/product/${item.id}`} className="w-full" onClick={(e) => e.stopPropagation()}>
               <div
-                key={item.id}
                 className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
               >
                 <div className="text-center">
@@ -165,6 +163,7 @@ export default function Home() {
                   <p className="text-gray-500 text-xs mt-1">{item.status}</p>
                 </div>
               </div>
+            </Link>
             ))}
           </div>
 
