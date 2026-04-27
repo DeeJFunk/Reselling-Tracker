@@ -12,8 +12,6 @@ import {
 import Navbar from "~/components/Navbar";
 import { Link } from "react-router";
 
-
-
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Home" },
@@ -291,8 +289,9 @@ export default function Home() {
 
           <div className="grid grid-cols-3 gap-6">
             {filteredItems.map(item => (
-            <Link key={item.id} to={`/product/${item.id}`} className="w-full" onClick={(e) => e.stopPropagation()}>
+            // <Link key={item.id} to={`/product/${item.id}`} className="w-full" onClick={(e) => e.stopPropagation()}>
               <div
+                key={item.id}
                 className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
                 onClick={() => handleOpenEdit(item)}
               >
@@ -302,7 +301,7 @@ export default function Home() {
                   <p className="text-gray-500 text-xs mt-1">{item.status}</p>
                 </div>
               </div>
-            </Link>
+            // </Link>
             ))}
           </div>
 

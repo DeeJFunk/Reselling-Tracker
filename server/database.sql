@@ -3,7 +3,7 @@ CREATE DATABASE reseller;
 
 \c reseller;
 
-CREATE TABLE product(
+CREATE TABLE IF NOT EXISTS product(
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     product_desc VARCHAR(255) NOT NULL,
@@ -14,5 +14,10 @@ CREATE TABLE product(
     date_sold DATE
 );
 
-\i populate.sql
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
 
+\i populate.sql
