@@ -10,6 +10,9 @@ import {
   YAxis,
 } from "recharts";
 import Navbar from "~/components/Navbar";
+import { Link } from "react-router";
+
+
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -167,9 +170,11 @@ export default function Home() {
   }, [items, statusFilter, categoryFilters, priceRange]);
 
   return (
-    <div className="bg-[#9D5FC2] w-full min-h-screen flex flex-col pt-20">
+    <div className="bg-gray-500 w-full min-h-screen flex flex-col pt-20">
       <Navbar />
-      <div className="bg-[#9D5FC2] border-b border-gray-200 p-6">
+
+      {/* TOP DASHBOARD STATS */}
+      <div className="bg-gray-500 border-b border-gray-200 p-6">
         <div className="mx-auto flex flex-col gap-6 px-4 py-6 lg:max-w-7xl lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-3xl bg-white p-5 shadow-sm">
@@ -277,17 +282,17 @@ export default function Home() {
         </aside>
 
         {/* RIGHT SIDE - INVENTORY GRID */}
-        <main className="flex-1 p-8 overflow-y-auto bg-[#3F3047]">
+        <main className="flex-1 p-8 overflow-y-auto bg-gray-700">
           <div className="mb-4">
-            <p className="text-gray-600 text-sm">
+            <p className="text-white text-sm">
               Showing {filteredItems.length} of {items.length} items
             </p>
           </div>
 
           <div className="grid grid-cols-3 gap-6">
             {filteredItems.map(item => (
+            <Link key={item.id} to={`/product/${item.id}`} className="w-full" onClick={(e) => e.stopPropagation()}>
               <div
-                key={item.id}
                 className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
                 onClick={() => handleOpenEdit(item)}
               >
@@ -297,6 +302,7 @@ export default function Home() {
                   <p className="text-gray-500 text-xs mt-1">{item.status}</p>
                 </div>
               </div>
+            </Link>
             ))}
           </div>
 

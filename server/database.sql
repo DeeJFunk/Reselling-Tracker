@@ -13,3 +13,6 @@ CREATE TABLE product(
     date_purchased DATE,
     date_sold DATE
 );
+
+\i populate.sql
+
